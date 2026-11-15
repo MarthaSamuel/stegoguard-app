@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Explore the frozen StegoGuard-LM study: detection, intervention, covert message recovery, and the cost to legitimate responses.">
+  <meta name="theme-color" content="#175b60">
+  <title>StegoGuard Results Explorer</title>
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to results</a>
+  <div class="shell">
+    <header class="masthead">
+      <div class="brand"><img src="./icon.svg" alt="" width="40" height="44"><div><span class="eyebrow">StegoGuard-LM</span><h1>Results Explorer</h1></div></div>
+      <span class="stamp"><span class="status-dot"></span> Frozen pilot_v0</span>
+    </header>
+    <p class="intro">Follow hidden messages through detection, intervention, and recovery. See where protection is lost, and what rewriting costs legitimate responses.</p>
+    <div class="scope" aria-label="Study populations"><span><strong>160</strong> original responses</span><span><strong>104</strong> matched parents</span><span><strong>48</strong> adaptive parents</span><span><strong>288</strong> replay trajectories</span></div>
+    <nav class="tabs" aria-label="Explorer views">
+      <a href="#protection" data-view="protection">Protection &amp; utility</a>
+      <a href="#detector" data-view="detector">Detector</a>
+      <a href="#replay" data-view="replay">Replay</a>
+      <a href="#corpus" data-view="corpus">Corpus</a>
+    </nav>
+    <main id="content" tabindex="-1"><div class="loading" role="status">Loading frozen study records…</div></main>
+    <footer>
+      <p>This explorer summarizes recorded experiments. It does not generate text, train models, or run new attacks.</p>
+      <details><summary>How the study fits together</summary>
+        <div class="note-grid">
+          <div><h3>Output-side defense</h3><p>The attacker constructs encoded text before a trusted defense. Flagged linguistic text is rewritten; suspicious Unicode is sanitized. The receiver attempts to decode the delivered text.</p><p>Attacker access is assumed by this evaluation. Compromise of a deployed service and editing after the defense are outside its scope. Receiver coordination is supplied through metadata; its cost is excluded.</p></div>
+          <div><h3>Matched populations</h3><p>The original corpus contains 160 responses across two models, two domains, and two length targets. Static comparisons use 104 parents with accepted attacks in all three families. The adaptive subset takes six parents from each of eight corpus cells, giving 48.</p><p>These subsets are conditioned on channel feasibility. They do not estimate the natural prevalence of covert traffic.</p></div>
+        </div>
+      </details>
+      <details><summary>Terms in plain language</summary>
+        <dl class="glossary">
+          <dt>Parent</dt><dd>The original clean response from which attack examples are constructed.</dd>
+          <dt>Rank encoding</dt><dd>Bits are embedded through constrained choices among model-ranked tokens.</dd>
+          <dt>Synonym encoding</dt><dd>Bits are represented by alternative words in eligible, tokenizer-stable slots.</dd>
+          <dt>Unicode control</dt><dd>Invisible formatting characters carry bits. This is a structural concealment control.</dd>
+          <dt>FPR</dt><dd>False-positive rate: the share of clean responses incorrectly flagged.</dd>
+          <dt>F1 gate</dt><dd>A decision threshold selected to balance precision and recall during calibration.</dd>
+          <dt>AUROC</dt><dd>How often an attack receives a higher score than a clean response, averaged across score thresholds. It does not measure protection after rewriting.</dd>
+          <dt>Exact recovery</dt><dd>The receiver decodes the complete intended bitstring correctly. Failure does not establish zero information leakage.</dd>
+          <dt>Successful bits</dt><dd>Payload length counted only when the complete payload is recovered. Repeat deliveries count again.</dd>
+          <dt>Semantic similarity</dt><dd>A model-based measure of how close two texts are in meaning. It does not verify every fact, instruction, or downstream use.</dd>
+        </dl>
+      </details>
+      <details id="source-notes"><summary>Data provenance and downloads</summary><div id="provenance">Source metadata loads with the study.</div></details>
+      <p class="footline">StegoGuard-LM · Research results, with their boundaries in view.</p>
+    </footer>
+  </div>
+  <noscript><p>This explorer needs JavaScript to summarize its frozen data.</p></noscript>
+</body>
+</html>
